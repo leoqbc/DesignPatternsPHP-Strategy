@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "DifferDev\\": "src/"
+        }
+    },
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
