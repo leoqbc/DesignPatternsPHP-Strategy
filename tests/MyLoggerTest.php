@@ -4,9 +4,15 @@ use DifferDev\Logger\MyLogger;
 
 class MyLoggerTest extends PHPUnit\Framework\TestCase
 {
+    protected MyLogger $consoleLog;
+    
+    protected MyLogger $fileLog;
+
     public function setUp(): void
     {
         chdir(__DIR__);
+        $this->consoleLog = new MyLogger('console');
+        $this->fileLog = new MyLogger('file');
     }
 
     public function tearDown(): void
@@ -18,40 +24,36 @@ class MyLoggerTest extends PHPUnit\Framework\TestCase
 
     public function testClassLoggerShouldLogErrorInConsole()
     {
-        $logger = new MyLogger('console');
         $message = 'Olá mundo via logger';
         
         $this->expectOutputString("Error: Olá mundo via logger\r\n");
 
-        $logger->error($message);
+        $this->consoleLog->error($message);
     }
 
     public function testClassLoggerShouldLogWarningInConsole()
     {
-        $logger = new MyLogger('console');
         $message = 'Olá mundo via logger';
         
         $this->expectOutputString("Warning: Olá mundo via logger\r\n");
 
-        $logger->warning($message);
+        $this->consoleLog->warning($message);
     }
 
     public function testClassLoggerShouldLogErrorInFile()
     {
-        $logger = new MyLogger('file');
         $message = 'Olá mundo via arquivo';
 
-        $logger->error($message);
+        $this->fileLog->error($message);
 
         $this->assertFileEquals('fixtures/log_error.txt', 'logs.txt');
     }
 
     public function testClassLoggerShouldLogWarningInFile()
     {
-        $logger = new MyLogger('file');
         $message = 'Olá mundo via arquivo';
 
-        $logger->warning($message);
+        $this->fileLog->warning($message);
 
         $this->assertFileEquals('fixtures/log_warning.txt', 'logs.txt');
     }
