@@ -2,7 +2,7 @@
 Exemplo de implementação Strategy para o canal DifferDev
 
 ## Link do vídeo
-[Decorator em PHP 8](https://youtube.com/differdev)
+[Strategy em PHP 8](https://youtu.be/DTgzrHxUnaU)
 
 ## Imagem de exemplo
 ![Strategy Imagem](strategy_image.png)
